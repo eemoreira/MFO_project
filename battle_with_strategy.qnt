@@ -170,7 +170,7 @@ module battle {
         {hp: 20, initiative: priest_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Priest, creature_id: 1},
         {hp: 150, initiative: warrior_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Warrior, creature_id: 2},
         {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 3},
-        // {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
+        {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
         // dois monstros
       ]),
       round' = 0,
