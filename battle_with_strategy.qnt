@@ -213,7 +213,7 @@ module battle {
           paralyze_attack(attacker, enemy, now_order)
         }
       } else {
-        if (enemy.is_taunted or enemy.is_paralyzed) {
+        if (enemy.is_paralyzed) {
           damage_attack(attacker, enemy, now_order)
         } else {
           cast_imunity(attacker, now_order)
