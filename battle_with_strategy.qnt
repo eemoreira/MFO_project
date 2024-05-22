@@ -1,3 +1,4 @@
+// -*- mode: Bluespec; -*-
 module battle {
   type CreatureType = Mage | Priest | Warrior | Monster
   type Option[a] = Some(a) | None
