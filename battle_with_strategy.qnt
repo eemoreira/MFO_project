@@ -165,14 +165,18 @@ module battle {
     nondet priest_initiative = d20.oneOf()
     nondet warrior_initiative = d20.oneOf()
     nondet monster_initiative = d20.oneOf()
+    // nondet monster_initiative2 = d20.oneOf()
+    // nondet monster_initiative3 = d20.oneOf()
+    // nondet monster_initiative4 = d20.oneOf()
     all {
       order' = sort([
         {hp: 20, initiative: mage_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Mage, creature_id: 0},
         {hp: 20, initiative: priest_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Priest, creature_id: 1},
         {hp: 150, initiative: warrior_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Warrior, creature_id: 2},
         {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 3},
-        // {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
-        // dois monstros
+        // {hp: 100, initiative: monster_initiative2, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
+        // {hp: 100, initiative: monster_initiative3, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
+        // {hp: 100, initiative: monster_initiative4, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
       ]),
       round' = 0,
       start' = true,
@@ -226,5 +230,8 @@ module battle {
 
   val character_alive = order.foldl(true, (acc, i) => acc and (i.creature_type == Monster or i.hp > 0))
   val monster_alive = order.foldl(true, (acc, i) => acc and (i.creature_type != Monster or i.hp > 0))
+  val warrior_alive = order.foldl(true, (acc, i) => acc and (i.creature_type != Warrior or i.hp > 0))
+  val mage_or_priest_alive = order.foldl(0, (acc, i) => acc + 
+    if ((i.creature_type == Priest or i.creature_type == Mage) and i.hp <= 0) 1 else 0)
 
 }
