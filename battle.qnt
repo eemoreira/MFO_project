@@ -17,6 +17,7 @@ module battle {
   | Attack({attacker: Creature, receiver: Creature, damage: int})
   | Buff({caster: Creature, receiver: Creature, effect: Effect})
   | Imunity({caster: Creature})
+  | IsParalyzed({creature: Creature})
 
   pure def sort(l: List[Creature]): List[Creature] = {
     pure val list_d20 = range(1, 21)
@@ -147,7 +148,7 @@ module battle {
       | Priest => attacker
     }
     order' = nxt.foldl([], (acc, i) => acc.append(if (i == attacker) attacker_next else i)),
-    last_attack' = None
+    last_attack' = Some([IsParalyzed({creature: attacker})])
   }
 
   def lose_buffs(attacker: Creature): List[Creature] = {
@@ -169,7 +170,7 @@ module battle {
         {hp: 20, initiative: priest_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Priest},
         {hp: 150, initiative: warrior_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Warrior},
         {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster},
-        {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster},
+        // {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster},
         //dois monstros
       ]),
       round' = 0,
