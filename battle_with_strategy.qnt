@@ -175,8 +175,8 @@ module battle {
         {hp: 150, initiative: warrior_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Warrior, creature_id: 2},
         {hp: 100, initiative: monster_initiative, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 3},
         // {hp: 100, initiative: monster_initiative2, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
-        // {hp: 100, initiative: monster_initiative3, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
-        // {hp: 100, initiative: monster_initiative4, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 4},
+        // {hp: 100, initiative: monster_initiative3, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 5},
+        // {hp: 100, initiative: monster_initiative4, is_paralyzed: false, is_imune: false, is_taunted: false, creature_type: Monster, creature_id: 6},
       ]),
       round' = 0,
       start' = true,
@@ -198,7 +198,7 @@ module battle {
     } else if (attacker.creature_type == Monster) {
       any {
         damage_attack(attacker, enemy, now_order),
-        paralyze_attack(attacker, enemy, now_order),
+        // paralyze_attack(attacker, enemy, now_order),
         skip_turn(attacker, now_order),
       }
     } else {
