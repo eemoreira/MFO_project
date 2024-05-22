@@ -199,7 +199,8 @@ module battle {
     round' = (round + 1) % order.length(),
   }
 
-  val no_deaths = order.foldl(true, (acc, i) => if (i.hp <= 0 or acc == false) false else true)
+  val no_deaths = order.foldl(true, (acc, i) => acc and (i.creature_type == Monster or i.hp > 0))
+  val mage_alive = order.foldl(true, (acc, i) => acc and (i.creature_type != Mage or i.hp > 0))
   val monster_alive = order.foldl(true, (acc, i) => 
     if (acc == false or (i.creature_type == Monster and i.hp <= 0)) false else true)
 

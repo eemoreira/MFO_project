@@ -198,7 +198,7 @@ module battle {
     } else if (attacker.creature_type == Monster) {
       any {
         damage_attack(attacker, enemy, now_order),
-        // paralyze_attack(attacker, enemy, now_order),
+        paralyze_attack(attacker, enemy, now_order),
         skip_turn(attacker, now_order),
       }
     } else {
@@ -231,7 +231,8 @@ module battle {
   val character_alive = order.foldl(true, (acc, i) => acc and (i.creature_type == Monster or i.hp > 0))
   val monster_alive = order.foldl(true, (acc, i) => acc and (i.creature_type != Monster or i.hp > 0))
   val warrior_alive = order.foldl(true, (acc, i) => acc and (i.creature_type != Warrior or i.hp > 0))
+  val mage_alive = order.foldl(true, (acc, i) => acc and (i.creature_type != Mage or i.hp > 0))
   val mage_or_priest_alive = order.foldl(0, (acc, i) => acc + 
-    if ((i.creature_type == Priest or i.creature_type == Mage) and i.hp <= 0) 1 else 0)
+    if ((i.creature_type == Priest or i.creature_type == Mage) and i.hp <= 0) 1 else 0) < 2
 
 }
